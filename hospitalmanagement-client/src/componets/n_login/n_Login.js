@@ -4,6 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.webp";
 import login from "../../assets/n_login.svg";
 import "./n_Login.css";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { GoogleLogin } from "@react-oauth/google";
+import jwt_decode from "jwt-decode";
+import { useHistory } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+
 export default class n_Login extends Component {
   state = {
     email: "",
@@ -11,6 +17,7 @@ export default class n_Login extends Component {
     emailError: "",
     passwordError: "",
   };
+  //const clientId = 727047923764-j5ifqv3drru2f5p03okf9q8141r423ab.apps.googleusercontent.com
 
   handleChange = (event) => {
     const isCheckbox = event.target.type == "checkbox";
@@ -56,6 +63,14 @@ export default class n_Login extends Component {
     }
     console.log(this.state);
   };
+
+  handleGoogleLoginSuccess = (credentialResponse) => {
+    console.log(credentialResponse.credential);
+    var decoded = jwt_decode(credentialResponse.credential);
+    console.log(decoded);
+    window.location.href = `/home?name=${decoded.name}`;
+  };
+  
   render() {
     return (
       <>
@@ -113,13 +128,23 @@ export default class n_Login extends Component {
                 </Form.Group>
 
                 <Button variant="primary btn-block" type="submit">
-                  Submit
+                  Login
                 </Button>
-
                 <div className="text-left at-3">
                   <a href="/register">
                     <small className="account">Create an account</small>
                   </a>
+                </div>
+                <hr className="or-line" />
+                <div>
+                  <GoogleOAuthProvider clientId="727047923764-j5ifqv3drru2f5p03okf9q8141r423ab.apps.googleusercontent.com">
+                    <GoogleLogin
+                      onSuccess={this.handleGoogleLoginSuccess}
+                      onError={() => {
+                        console.log("Login Failed");
+                      }}
+                    />
+                  </GoogleOAuthProvider>
                 </div>
               </Form>
             </Col>

@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 
 const Patients = require("../P_models/PatientsSchema");
+// Helper function to validate URLs
+
 
 router.post("/form", async (req, res) => {
   console.log(req.body);
@@ -10,6 +12,7 @@ router.post("/form", async (req, res) => {
   if (!name || !age || !address || !mobile || !gender || !date) {
     res.status(422).json("plz fill the data");
   }
+// Validate the redirectURL before using it
 
   try {
     const prepatient = await Patients.findOne({ mobile: mobile });
@@ -38,6 +41,7 @@ router.post("/form", async (req, res) => {
 
 //get all
 router.get("/admin", async (req, res) => {
+ 
   try {
     const patientdata = await Patients.find();
     res.status(201).json(patientdata);
@@ -50,6 +54,7 @@ router.get("/admin", async (req, res) => {
 // get individual user
 
 router.get("/getpatient/:id", async (req, res) => {
+  
   try {
     console.log(req.params);
     const { id } = req.params;
@@ -65,6 +70,7 @@ router.get("/getpatient/:id", async (req, res) => {
 //update appointment
 
 router.patch("/updatepatient/:id", async (req, res) => {
+  
   try {
     const { id } = req.params;
 
@@ -81,6 +87,7 @@ router.patch("/updatepatient/:id", async (req, res) => {
 
 // delete appointment
 router.delete("/deletepatient/:id", async (req, res) => {
+  
   try {
     const { id } = req.params;
 

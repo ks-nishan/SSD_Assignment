@@ -36,8 +36,14 @@ const P_Form = () => {
     e.preventDefault();
 
     const { name, age, address, mobile, gender, date } = inpval;
+    function isValidURL(url) {
+      // Regular expression to check if the URL is valid
+      const urlPattern = /^(https?:\/\/)?([^\s]+\.[^\s]+)$/i;
+      return urlPattern.test(url);
+    }
 
     const res = await fetch("http://localhost:8000/form", {
+      
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -54,7 +60,9 @@ const P_Form = () => {
 
     const data = await res.json();
     console.log(data);
-
+    if (res && !isValidURL(res)) {
+      return res.status(422).json("Invalid redirect URL.");
+    }
     if (res.status === 422 || !data) {
       console.log("error ");
       alert("error");

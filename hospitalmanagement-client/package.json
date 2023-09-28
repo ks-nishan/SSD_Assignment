@@ -15,6 +15,7 @@
     "antd": "^4.22.8",
     "axios": "^0.27.2",
     "bootstrap": "^5.2.0",
+    "google-oauth2": "^0.1.0",
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.5.25",
     "jwt-decode": "^3.1.2",

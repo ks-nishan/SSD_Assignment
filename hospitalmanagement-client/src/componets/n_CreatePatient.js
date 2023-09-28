@@ -12,7 +12,7 @@ export default class n_CreatePatient extends Component {
       email: "",
       phone: "",
       password: "",
-      dob: "",
+      userType: "",
     };
   }
 
@@ -28,14 +28,14 @@ export default class n_CreatePatient extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    const { userName, email, phone, password, dob } = this.state;
+    const { userName, email, phone, password, userType } = this.state;
 
     const data = {
       userName: userName,
       email: email,
       phone: phone,
       password: password,
-      dob: dob,
+      userType: userType,
     };
 
     console.log(data);
@@ -47,7 +47,7 @@ export default class n_CreatePatient extends Component {
           email: "",
           phone: "",
           password: "",
-          dob: "",
+          userType: "",
         });
         alert("Registered Successfully");
       } else {
@@ -127,26 +127,28 @@ export default class n_CreatePatient extends Component {
                     </div>
                   </div>
                   <div class="form-group col-md-6 mb-3">
-                    <label for="phone">Date of Birth</label>
-                    <input
-                      type="date"
-                      id="dob"
-                      name="dob"
-                      class="form-control"
-                      placeholder="Enter DoB"
-                      value={this.state.dob}
+                    <label for="phone">User Type</label>
+
+                    <select
+                      name="userType"
+                      type="text"
+                      value={this.state.userType}
                       onChange={this.handleInputChange}
-                      required
-                    />
-                    <div class="invalid-feedback font-weight-bold">
+                      className="form-control"
+                    >
+                      <option>select</option>
+                      <option>Admin</option>
+                      <option>User</option>
+                    </select>
+                    {/* <div class="invalid-feedback font-weight-bold">
                       Invalid Input.
-                    </div>
-                    <div class="valid-feedback font-weight-bold">
+                    </div> */}
+                    {/* <div class="valid-feedback font-weight-bold">
                       Looks good!
                     </div>
                     <div class="valid-feedback font-weight-bold">
                       Looks good!
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 <div class="form-group">

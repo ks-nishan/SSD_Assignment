@@ -3,8 +3,13 @@ const express = require("express");
 const Programs = require("../n_models/n_programs");
 
 const router = express.Router();
-
-router.post("/program/save", (req, res) => {
+const auth = require("../controllers/auth");
+router.post("/program/save",auth, (req, res) => {
+  if (req.user.userType !== "Admin") {
+    return res.status(403).json({
+      error: "Access denied. Only ADMIN users are allowed to save programs.",
+    });
+  }
   let newProgram = new Programs(req.body);
 
   newProgram.save((err) => {

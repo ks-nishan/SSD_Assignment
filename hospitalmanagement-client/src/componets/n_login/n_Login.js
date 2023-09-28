@@ -53,6 +53,7 @@ export default class n_Login extends Component {
           isAuthenticated: true,
         }); 
         alert("Authenticated Successfully");
+        window.location.href = '/home';
       } else if (res.status === 400) {
         alert("Authentication was Fail!!!");
       }

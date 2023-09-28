@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require("express");
 
 const mongoose = require("mongoose");
@@ -46,11 +48,8 @@ app.use(router);
 app.use('/medicine', medicine);
 app.use('/delivary', delivary);
 app.use("/api/cruds", crudRoutes);
-const PORT = 8000;
-
-const DB_URL =
-
-  "mongodb+srv://nishan:nisha123@cluster1.trfvymb.mongodb.net/SPM_DB?retryWrites=true&w=majority";
+const {PORT} =process.env;
+const {DB_URL} =process.env;
 
 
 mongoose

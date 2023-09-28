@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 import { Col, Container, Row, Form, Button } from "react-bootstrap";
 import logo from "../assets/logo.webp";
 import register from "../assets/n_register.svg";
@@ -27,10 +28,11 @@ export default class n_CreateProgram extends Component {
   };
 
   onSubmit = (e) => {
+    const navigate = useNavigate;
     e.preventDefault();
-
+  
     const { title, ageGroup, gender, sample, desc, price } = this.state;
-
+  
     const data = {
       title: title,
       ageGroup: ageGroup,
@@ -39,10 +41,16 @@ export default class n_CreateProgram extends Component {
       desc: desc,
       price: price,
     };
-
-    console.log(data);
-
-    axios.post("http://localhost:8000/program/save", data).then((res) => {
+  
+    const token = localStorage.getItem("token"); // Retrieve the token from local storage.
+  
+    axios.post("http://localhost:8000/program/save", data, {
+      headers: {
+        auth: `${token}`, // Include the token in the Authorization header.
+      },
+    })
+    .then((res) => {
+      console.log(res)
       if (res.data.success) {
         this.setState({
           title: "",
@@ -53,11 +61,20 @@ export default class n_CreateProgram extends Component {
           price: "",
         });
         alert("Added Successfully");
+      }else if(res.response.status === 401){
+        alert("Authentication was Fail!!!");
+        window.location.href = '/home';
       } else {
+        
         alert("Added Failed!!!");
       }
+    })
+    .catch((error) => {
+      // Handle errors
+      console.error(error);
     });
   };
+  
 
   render() {
     return (

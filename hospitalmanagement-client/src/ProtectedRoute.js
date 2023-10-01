@@ -10,3 +10,4 @@ function ProtectedRoute({ element, authenticated, ...rest }) {
 }
 
 export default ProtectedRoute;
+//protected

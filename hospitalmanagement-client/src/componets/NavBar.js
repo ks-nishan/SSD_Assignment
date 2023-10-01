@@ -2,7 +2,7 @@ import React from "react";
 import logo from "../assets/logo.webp";
 
 function NavBar() {
-  const token = localStorage.getItem("token");
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -17,7 +17,7 @@ function NavBar() {
 
         <div className="container-fluid">
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          {token ? (
+         
             <div className="container">
             
               <ul className="navbar-nav me-auto mb-6 mb-lg-0">
@@ -76,7 +76,7 @@ function NavBar() {
                 </li>
               </ul>
             </div>
-            ) : (
+            
             <form className="d-flex" style={{ marginLeft: "260px" }}>
               <button className="btn btn-info tab" type="submit">
                 <a className="text-decoration-none text-dark " href="/">
@@ -93,7 +93,7 @@ function NavBar() {
               </button>
               &nbsp;&nbsp;
             </form>
-              )}
+            
           </div>
         
         </div>

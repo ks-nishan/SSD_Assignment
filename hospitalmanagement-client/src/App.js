@@ -1,4 +1,5 @@
 import "./App.css";
+import React, { useState, useEffect } from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
 import NavBar from "./componets/NavBar";
@@ -39,46 +40,153 @@ import P_Form from "./P_Views/P_Form";
 import P_UserEdit from "./P_Views/P_UserEdit";
 import P_Details from "./P_Views/P_Details";
 import P_AssignDate from "./P_Views/P_AssignDate";
+import ProtectedRoute from "./ProtectedRoute";
 function App() {
+  const [authenticated, setAuthenticated] = useState(false);
+
+  useEffect(() => {
+    // Check for a valid JWT token in local storage
+    const token = localStorage.getItem('token');
+    if (token) {
+      setAuthenticated(true);
+    }
+  }, []);
   return (
+    
     <div className="App">
+      
+    
       <BrowserRouter>
-        <NavBar />
+        <NavBar authenticated={authenticated}/>
         <Routes>
-          <Route path="/patients" element={<Patients />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/editPatient/:id" element={<EditPatient />} />
-          <Route path="/patient/:id" element={<Patient />} />
-          <Route path="/" element={<Login />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/programs" element={<Programs />} />
-          <Route path="/editProgram/:id" element={<EditProgram />} />
-          <Route path="/createProgram" element={<CreateProgram />} />
-          <Route path="/patientsProgram" element={<PatientsProgeam />} />
-            <Route exact path="/thhome" element={<ThHome/>} />	
-          <Route exact path="/cruds" element={<CrudTable />} />					
-					<Route exact path="/cruds/list-view" element={<CrudListView />} />
-					<Route exact path="/cruds/grid-view" element={<CrudGridView />} />
-					<Route exact path="/cruds/new" element={<CrudAdd />} />
-					<Route exact path="/cruds/Doc" element={<AddnewDoctor />} />
-					<Route exact path="/cruds/:_id" element={<CrudDetails />} />
-					<Route exact path="/cruds/:_id/edit" element={<CrudEdit />} />
-					<Route exact path="/cruds/:_id/delete" element={<CrudDelete />} />
-					<Route exact path="/cruds/tab" element={<Doctorcrudtable />} />
+          
+          <Route  path="/patients" element={ <ProtectedRoute
+                element={<Patients />}
+                authenticated={authenticated}
+              />}  />
+
+          <Route  path="/editPatient/:id"   element={ <ProtectedRoute
+                element={<EditPatient />}
+                authenticated={authenticated}
+              />}/>
+          <Route  path="/patient/:id"  element={ <ProtectedRoute
+                element={<Patient />}
+                authenticated={authenticated}
+              />}/>
+          <Route  path="/home"   element={ <ProtectedRoute
+                element={<Home />}
+                authenticated={authenticated}
+              />}/>
+          <Route  path="/programs"  element={ <ProtectedRoute
+                element={<Programs />}
+                authenticated={authenticated}
+              />}/>
+          <Route  path="/editProgram/:id"  element={ <ProtectedRoute
+                element={<EditProgram />}
+                authenticated={authenticated}
+              />}/>
+          <Route  path="/createProgram"  element={ <ProtectedRoute
+                element={<CreateProgram />}
+                authenticated={authenticated}
+              />}/>
+          <Route  path="/patientsProgram"  element={ <ProtectedRoute
+                element={<PatientsProgeam />}
+                authenticated={authenticated}
+              />}/>
+            <Route  exact path="/thhome"  element={ <ProtectedRoute
+                element={<ThHome />}
+                authenticated={authenticated}
+              />}/>	
+          <Route  exact path="/cruds"  element={ <ProtectedRoute
+                element={<CrudTable />}
+                authenticated={authenticated}
+              />}/>					
+					<Route  exact path="/cruds/list-view"  element={ <ProtectedRoute
+                element={<CrudListView />}
+                authenticated={authenticated}
+              />}/>
+					<Route  exact path="/cruds/grid-view"  element={ <ProtectedRoute
+                element={<CrudGridView />}
+                authenticated={authenticated}
+              />}/>
+					<Route  exact path="/cruds/new"  element={ <ProtectedRoute
+                element={<CrudAdd />}
+                authenticated={authenticated}
+              />}/>
+					<Route  exact path="/cruds/Doc"  element={ <ProtectedRoute
+                element={<AddnewDoctor />}
+                authenticated={authenticated}
+              />}/>
+					<Route  exact path="/cruds/:_id"  element={ <ProtectedRoute
+                element={<CrudDetails />}
+                authenticated={authenticated}
+              />}/>
+					<Route  exact path="/cruds/:_id/edit"  element={ <ProtectedRoute
+                element={<CrudEdit />}
+                authenticated={authenticated}
+              />}/>
+					<Route  exact path="/cruds/:_id/delete"  element={ <ProtectedRoute
+                element={<CrudDelete />}
+                authenticated={authenticated}
+              />}/>
+					<Route  exact path="/cruds/tab"  element={ <ProtectedRoute
+                element={<Doctorcrudtable />}
+                authenticated={authenticated}
+              />}/>
 					
-          {/* Mathy */}
-          <Route exact path='/addmed' element={<AddMedicines/>}/>
-          <Route path='/show' element={<MedicinesAdmin/>}/>
-          <Route path='/delivery' element={<DeliveryDetails/>}/>
-          <Route  path="/pay" element={<Pay/>} />
-          <Route path='/phar' element={<Pharmacy/>}/>
-          <Route path="/labdash" element={<P_Dashboard />} />
-          <Route path="/book" element={<P_Booking />} />
-          <Route path="/adminview" element={<P_ViewAllAppointments />} />
-          <Route path="/form" element={<P_Form />} />
-          <Route path="/edit/:id" element={<P_UserEdit />} />
-          <Route path="/view" element={<P_Details />} />
-          <Route path="/editdate/:id" element={<P_AssignDate />} />
+         
+          <Route  exact path='/addmed'  element={ <ProtectedRoute
+                element={<AddMedicines />}
+                authenticated={authenticated}
+              />}/>
+          <Route  path='/show'  element={ <ProtectedRoute
+                element={<MedicinesAdmin />}
+                authenticated={authenticated}
+              />}/>
+          <Route  path='/delivery' element={ <ProtectedRoute
+                element={<DeliveryDetails />}
+                authenticated={authenticated}
+              />}/>
+          <Route   path="/pay"  element={ <ProtectedRoute
+                element={<Pay />}
+                authenticated={authenticated}
+              />}/>
+          <Route  path='/phar'  element={ <ProtectedRoute
+                element={<Pharmacy />}
+                authenticated={authenticated}
+              />}/>
+          <Route  path="/labdash"  element={ <ProtectedRoute
+                element={<P_Dashboard />}
+                authenticated={authenticated}
+              />}/>
+          <Route  path="/book"  element={ <ProtectedRoute
+                element={<P_Booking />}
+                authenticated={authenticated}
+              />}/>
+          <Route  path="/adminview"  element={ <ProtectedRoute
+                element={<P_ViewAllAppointments />}
+                authenticated={authenticated}
+              />}/>
+          <Route  path="/form"  element={ <ProtectedRoute
+                element={<P_Form />}
+                authenticated={authenticated}
+              />}/>
+          <Route  path="/edit/:id"  element={ <ProtectedRoute
+                element={<P_UserEdit />}
+                authenticated={authenticated}
+              />}/>
+          <Route  path="/view"  element={ <ProtectedRoute
+                element={<P_Details />}
+                authenticated={authenticated}
+              />}/>
+          <Route  path="/editdate/:id"  element={ <ProtectedRoute
+                element={<P_AssignDate />}
+                authenticated={authenticated}
+              />}/>
+       
+          <Route path="/register" element={<Register />} />
+          <Route path="/" element={<Login />} />
+          
         </Routes>
       </BrowserRouter>
     </div>

@@ -6,7 +6,7 @@
 ### Priyanthi Rajamanoharan - IT20141042
 ### Thusara Arulnesan - IT20138240
 
-# Github link to the original project 
+# Github link to the original project - https://github.com/ks-nishan/SPM_HM.git
 
 # Github link to the modified project 
 

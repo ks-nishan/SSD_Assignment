@@ -7,11 +7,17 @@ function CrudTable() {
 
 	useEffect(function () {
 		async function getCruds() {
+			const token = localStorage.getItem("token"); // Retrieve the token from local storage.
 			try {
-				const response = await axios.get("/api/cruds");
+				const response = await axios.get("/api/cruds", {
+					headers: {
+					  auth: `${token}`, // Include the token in the Authorization header.
+					},
+				  });
 				setCruds(response.data);
 			} catch (error) {
 				console.log("error", error);
+				window.location.href = '/login';
 			}
 		}
 		getCruds();
@@ -21,12 +27,12 @@ function CrudTable() {
 		<div className="container">
 			<div>
 				<h2>
-				Doctor Details
-					<p>
+				Appointment  Details
+					{/* <p>
 						<Link to="/cruds/tab" className="btn btn-primary float-right">
 							Add new Doctor
 						</Link>
-					</p>
+					</p> */}
 				</h2>
 				<hr />
 			</div>
@@ -38,10 +44,10 @@ function CrudTable() {
 						<th>Name</th>
 						<th>Phone</th>
 						<th>Email</th>
-						<th>Speciality</th>
+						<th>Paient Name</th>
 						<th>View</th>
 						<th>Edit</th>
-						<th>Delete</th>
+						<th>Cancel</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -75,7 +81,7 @@ function CrudTable() {
 											to={`/cruds/${crud._id}/delete`}
 											className="btn btn-danger"
 										>
-											Delete
+											Cancel
 										</Link>
 									</td>
 								</tr>

@@ -39,6 +39,7 @@ import P_Form from "./P_Views/P_Form";
 import P_UserEdit from "./P_Views/P_UserEdit";
 import P_Details from "./P_Views/P_Details";
 import P_AssignDate from "./P_Views/P_AssignDate";
+import User from "./componets/user"
 function App() {
   return (
     <div className="App">
@@ -79,6 +80,7 @@ function App() {
           <Route path="/edit/:id" element={<P_UserEdit />} />
           <Route path="/view" element={<P_Details />} />
           <Route path="/editdate/:id" element={<P_AssignDate />} />
+          <Route path="/user" element={<User />} />
         </Routes>
       </BrowserRouter>
     </div>

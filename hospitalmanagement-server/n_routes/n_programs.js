@@ -26,7 +26,12 @@ router.post("/program/save",auth, (req, res) => {
 });
 
 //get program
-router.get("/programs", (req, res) => {
+router.get("/programs",auth, (req, res) => {
+  // if (req.user.userType !== "Admin") {
+  //   return res.status(403).json({
+  //     error: "Access denied. Only ADMIN users are allowed to save programs.",
+  //   });
+  // }
   Programs.find().exec((err, programs) => {
     if (err) {
       return res.status(400).json({
@@ -57,7 +62,12 @@ router.get("/program/:id", (req, res) => {
 });
 
 //update program
-router.put("/program/update/:id", (req, res) => {
+router.put("/program/update/:id",auth, (req, res) => {
+  if (req.user.userType !== "Admin") {
+    return res.status(403).json({
+      error: "Access denied. Only ADMIN users are allowed to save programs.",
+    });
+  }
   Programs.findByIdAndUpdate(
     req.params.id,
     {
@@ -78,7 +88,12 @@ router.put("/program/update/:id", (req, res) => {
 });
 
 //delete user
-router.delete("/program/delete/:id", (req, res) => {
+router.delete("/program/delete/:id",auth, (req, res) => {
+  if (req.user.userType !== "Admin") {
+    return res.status(403).json({
+      error: "Access denied. Only ADMIN users are allowed to save programs.",
+    });
+  }
   Programs.findByIdAndRemove(req.params.id).exec((err, deletedProgram) => {
     if (err)
       return res.status(400).json({

@@ -26,7 +26,12 @@ export default class n_programs extends Component {
   }
 
   retrivePrograms() {
-    axios.get("http://localhost:8000/programs").then((res) => {
+    const token = localStorage.getItem("token"); // Retrieve the token from local storage.
+    axios.get("http://localhost:8000/programs", {
+      headers: {
+        auth: `${token}`, // Include the token in the Authorization header.
+      },
+    }).then((res) => {
       if (res.data.success) {
         this.setState({
           programs: res.data.existingPrograms,

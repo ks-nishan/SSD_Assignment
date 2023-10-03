@@ -20,7 +20,13 @@ export default class n_programs extends Component {
   }
 
   retrivePrograms() {
-    axios.get("http://localhost:8000/programs").then((res) => {
+    const token = localStorage.getItem("token"); // Retrieve the token from local storage.
+    axios.get("http://localhost:8000/programs", {
+      headers: {
+        auth: `${token}`, // Include the token in the Authorization header.
+      },
+    }).then((res) => {
+      console.log(res)
       if (res.data.success) {
         this.setState({
           programs: res.data.existingPrograms,
@@ -28,13 +34,31 @@ export default class n_programs extends Component {
 
         console.log(this.state.programs);
       }
+    }).catch((error) => {
+      if (error.response && error.response.status === 401) {
+        window.location.href = '/login';
+      } else {
+        console.error("An error occurred:", error);
+      }
     });
   }
 
   onDelete = (id) => {
-    axios.delete(`http://localhost:8000/program/delete/${id}`).then((res) => {
+    const token = localStorage.getItem("token"); // Retrieve the token from local storage.
+    axios.delete(`http://localhost:8000/program/delete/${id}`,
+    {
+      headers: {
+        auth: `${token}`, // Include the token in the Authorization header.
+      },
+    }).then((res) => {
       alert("Deleted Successfully");
       this.retrivePrograms();
+    }).catch((error) => {
+      if (error.response && error.response.status === 401) {
+        window.location.href = '/login';
+      } else {
+        console.error("An error occurred:", error);
+      }
     });
   };
 
@@ -132,12 +156,12 @@ export default class n_programs extends Component {
                         <td>{programs.desc}</td>
                         <td>{programs.price}</td>
                         <td>
-                          <a
+                          {/* <a
                             className="btn btn-warning"
                             href={`/editProgram/${programs._id}`}
                           >
                             <i className="fas fa-edit"></i>&nbsp;Edit
-                          </a>
+                          </a> */}
                           &nbsp;
                           <a
                             className="btn btn-danger"

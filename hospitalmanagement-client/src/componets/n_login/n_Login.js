@@ -45,15 +45,21 @@ export default class n_Login extends Component {
     };
     axios.post("http://localhost:8000/login", data).then((res) => {
       if (res.status === 200) {
-        const token = res.data.token; // Assuming the token is returned in the response.
-    localStorage.setItem("token", token); // Store the token in local storage.
+        const token = res.data.token;
+        const decodedToken = jwt_decode(token);
+        console.log(decodedToken)
+        localStorage.setItem("token", token); 
         this.setState({
           email: "",
           password: "",
           isAuthenticated: true,
         }); 
         alert("Authenticated Successfully");
-        window.location.href = '/home';
+        if (decodedToken.userType === "Admin") {
+          window.location.href = '/home';
+        } else {
+          window.location.href = '/user';
+        } 
       } else if (res.status === 400) {
         alert("Authentication was Fail!!!");
       }

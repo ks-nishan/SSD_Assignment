@@ -29,7 +29,7 @@ const token = jwt.sign(
   { user_id: newUser._id, email,userType },
   process.env.TOKEN_KEY,
   {
-    expiresIn: "2m",
+    expiresIn: "10m",
   }
 );
 // save user token
@@ -116,7 +116,7 @@ router.post("/login", async (req, res) => {
         { user_id: user._id, email,userType:user.userType},
         process.env.TOKEN_KEY,
         {
-          expiresIn: "2m",
+          expiresIn: "10m",
         }
       );
 

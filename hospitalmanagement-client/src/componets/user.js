@@ -26,27 +26,27 @@ export default class user extends Component {
   };
 
   validate = () => {
-    let emailError = "";
-    let passwordError = "";
-    if (!this.state.email.includes("1")) {
-      emailError = "Invalid Email or Password";
-    }
+    // let emailError = "";
+    // let passwordError = "";
+    // if (!this.state.email.includes("1")) {
+    //   emailError = "Invalid Email or Password";
+    // }
 
-    if (!this.state.password.includes("1")) {
-      passwordError = "invalid Password";
-    }
+    // if (!this.state.password.includes("1")) {
+    //   passwordError = "invalid Password";
+    // }
 
-    if (emailError) {
-      this.setState({ emailError });
-      return false;
-    }
+    // if (emailError) {
+    //   this.setState({ emailError });
+    //   return false;
+    // }
 
-    if (passwordError) {
-      this.setState({ passwordError });
-      return false;
-    }
+    // if (passwordError) {
+    //   this.setState({ passwordError });
+    //   return false;
+    // }
 
-    return true;
+    // return true;
   };
 
   handleSubmit = (event) => {

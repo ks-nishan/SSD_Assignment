@@ -8,7 +8,7 @@
 
 # Github link to the original project - https://github.com/ks-nishan/SPM_HM.git
 
-# Github link to the modified project 
+# Github link to the modified project :- https://github.com/ks-nishan/SSD_Assignment
 
 # Link to a Youtube video :- https://youtu.be/gDMHCLqPS8Y
 

@@ -1,7 +1,19 @@
 import React from "react";
 import logo from "../assets/logo.webp";
+import { Link, useNavigate } from "react-router-dom";
 
-function NavBar() {
+function NavBar({ authenticated }) {
+  const handleLogout = () => {
+    // Clear the token from local storage
+    localStorage.removeItem("token");
+
+    // Navigate to the login page
+    window.location.href = '/';
+
+    // Optionally, you can reload the page to ensure a fresh start
+
+    
+  };
 
   return (
     <div>
@@ -17,7 +29,7 @@ function NavBar() {
 
         <div className="container-fluid">
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-     
+          {authenticated ? (
             <div className="container">
    
               <ul className="navbar-nav me-auto mb-6 mb-lg-0">
@@ -74,10 +86,18 @@ function NavBar() {
                     Patients
                   </a>
                 </li>
+                <li className="nav-item">
+                    <button
+                      className="btn btn-info ml-5"
+                      onClick={handleLogout}
+                    >
+                      Logout
+                    </button>
+                  </li>
               </ul>
             </div>
-          
-            <form className="d-flex" style={{ marginLeft: "260px" }}>
+            ) : (
+            <form className="d-flex" style={{ marginLeft: "1000px" }}>
               <button className="btn btn-info tab" type="submit">
                 <a className="text-decoration-none text-dark " href="/">
                   Login
@@ -93,7 +113,7 @@ function NavBar() {
               </button>
               &nbsp;&nbsp;
             </form>
-          
+            )}
           </div>
         
         </div>

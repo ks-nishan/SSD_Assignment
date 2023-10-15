@@ -46,11 +46,17 @@ function App() {
 
   useEffect(() => {
     // Check for a valid JWT token in local storage
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (token) {
       setAuthenticated(true);
+      console.log('Token retrieved:', token);
+    } else {
+      console.log('No token found in local storage.');
     }
   }, []);
+
+
+  
   return (
     
     <div className="App">

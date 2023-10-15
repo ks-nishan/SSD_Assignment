@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../assets/logo.webp";
 
-function NavBar() {
+function NavBar({ authenticated }) {
 
   return (
     <div>
@@ -17,9 +17,9 @@ function NavBar() {
 
         <div className="container-fluid">
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-         
+          {authenticated ? (
             <div className="container">
-            
+   
               <ul className="navbar-nav me-auto mb-6 mb-lg-0">
                 <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="/home">
@@ -76,7 +76,7 @@ function NavBar() {
                 </li>
               </ul>
             </div>
-            
+            ) : (
             <form className="d-flex" style={{ marginLeft: "260px" }}>
               <button className="btn btn-info tab" type="submit">
                 <a className="text-decoration-none text-dark " href="/">
@@ -93,7 +93,7 @@ function NavBar() {
               </button>
               &nbsp;&nbsp;
             </form>
-            
+            )}
           </div>
         
         </div>

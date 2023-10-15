@@ -73,10 +73,9 @@ function App() {
                 element={<Patient />}
                 authenticated={authenticated}
               />}/>
-          <Route  path="/home"   element={ <ProtectedRoute
+          <Route  path="/home"   
                 element={<Home />}
-                authenticated={authenticated}
-              />}/>
+               />
           <Route  path="/programs"  element={ <ProtectedRoute
                 element={<Programs />}
                 authenticated={authenticated}

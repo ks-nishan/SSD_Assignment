@@ -22,7 +22,7 @@ export default class n_Patients extends Component {
   }
 
   retriveUsers() {
-    axios.get("http://localhost:8000/users").then((res) => {
+    axios.get("https://localhost:8000/users").then((res) => {
       if (res.data.success) {
         this.setState({
           users: res.data.existingUsers,
@@ -34,7 +34,7 @@ export default class n_Patients extends Component {
   }
 
   onDelete = (id) => {
-    axios.delete(`http://localhost:8000/user/delete/${id}`).then((res) => {
+    axios.delete(`https://localhost:8000/user/delete/${id}`).then((res) => {
       alert("Deleted Successfully");
       this.retriveUsers();
     });
@@ -43,7 +43,7 @@ export default class n_Patients extends Component {
   handleSearchArea = (e) => {
     const searchKey = e.currentTarget.value;
 
-    axios.get("http://localhost:8000/users").then((res) => {
+    axios.get("https://localhost:8000/users").then((res) => {
       if (res.data.success) {
         this.filterData(res.data.existingUsers, searchKey);
       }
@@ -147,7 +147,7 @@ export default class n_Patients extends Component {
                         <th scope="row">{index + 1}</th>
                         <td>
                           <a
-                            href={`http://localhost:8000/user/${users._id}`}
+                            href={`https://localhost:8000/user/${users._id}`}
                             style={{ textDecoration: "none" }}
                           >
                             {users.userName}

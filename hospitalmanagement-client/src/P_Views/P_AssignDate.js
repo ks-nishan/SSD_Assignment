@@ -38,7 +38,7 @@ function P_UserEdit() {
   console.log(id);
 
   const getdata = async () => {
-    const res = await fetch(`http://localhost:8000/getpatient/${id}`, {
+    const res = await fetch(`https://localhost:8000/getpatient/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -65,7 +65,7 @@ function P_UserEdit() {
 
     const { name, rdate } = inpval;
 
-    const res2 = await fetch(`http://localhost:8000/updatepatient/${id}`, {
+    const res2 = await fetch(`https://localhost:8000/updatepatient/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

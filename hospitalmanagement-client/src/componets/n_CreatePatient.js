@@ -40,7 +40,7 @@ export default class n_CreatePatient extends Component {
 
     console.log(data);
 
-    axios.post("http://localhost:8000/user/save", data).then((res) => {
+    axios.post("https://localhost:8000/user/save", data).then((res) => {
       if (res.data.success) {
         this.setState({
           userName: "",

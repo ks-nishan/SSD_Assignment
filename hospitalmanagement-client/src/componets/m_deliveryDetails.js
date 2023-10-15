@@ -14,14 +14,14 @@ class DeliveryDetails extends Component {
 
   };
   getDelivery = () => {
-    axios.get("http://localhost:8001/delivary/show").then((res) => {
+    axios.get("https://localhost:8001/delivary/show").then((res) => {
       console.log(res);
       this.setState({ delivery: res.data });
     });
   };
   onDeleteClick(id) {
     axios
-      .delete(`http://localhost:8001/delivary/delete/${id}`)
+      .delete(`https://localhost:8001/delivary/delete/${id}`)
       .then((res) => {
         this.props.history.push("/delivery");
       })
@@ -41,7 +41,7 @@ class DeliveryDetails extends Component {
   handleModalUpdate = (e) => {
     console.log("mathy");
     axios
-      .put(`http://localhost:8001/delivary/update/${this.state.uid}`, {
+      .put(`https://localhost:8001/delivary/update/${this.state.uid}`, {
         isCheck: this.state.ucheck,
         
 
@@ -56,7 +56,7 @@ class DeliveryDetails extends Component {
   handleSearchArea = (e) => {
     const searchKey = e.currentTarget.value;
 
-    axios.get("http://localhost:8001/delivary/find").then((res) => {
+    axios.get("https://localhost:8001/delivary/find").then((res) => {
       if (res.data.success) {
         this.filterData(res.data.existingDelivary, searchKey);
       }

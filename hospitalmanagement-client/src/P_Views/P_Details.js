@@ -26,7 +26,7 @@ function P_Details() {
     return newDate[0];
   }
   const getdata = async () => {
-    const res = await fetch(`http://localhost:8000/admin`, {
+    const res = await fetch(`https://localhost:8000/admin`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -49,7 +49,7 @@ function P_Details() {
   }, []);
 
   const deletepatient = async (id) => {
-    const res2 = await fetch(`http://localhost:8000/deletepatient/${id}`, {
+    const res2 = await fetch(`https://localhost:8000/deletepatient/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

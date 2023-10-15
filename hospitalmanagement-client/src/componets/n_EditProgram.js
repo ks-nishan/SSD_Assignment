@@ -47,7 +47,7 @@ export default class n_EditProgram extends Component {
     console.log(data);
 
     axios
-      .put(`http://localhost:8000/program/update/${id}`, data)
+      .put(`https://localhost:8000/program/update/${id}`, data)
       .then((res) => {
         if (res.data.success) {
           this.setState({
@@ -68,7 +68,7 @@ export default class n_EditProgram extends Component {
     //const id = this.props.match.params.id;
     const id = "6326cc429c3a1d51a4ba767a";
 
-    axios.get(`http://localhost:8000/program/${id}`).then((res) => {
+    axios.get(`https://localhost:8000/program/${id}`).then((res) => {
       //console.log("Fail");
       if (res.data.success) {
         this.setState({

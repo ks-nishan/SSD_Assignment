@@ -21,7 +21,7 @@ export default class n_programs extends Component {
 
   retrivePrograms() {
     const token = localStorage.getItem("token"); // Retrieve the token from local storage.
-    axios.get("http://localhost:8000/programs", {
+    axios.get("https://localhost:8000/programs", {
       headers: {
         auth: `${token}`, // Include the token in the Authorization header.
       },
@@ -45,7 +45,7 @@ export default class n_programs extends Component {
 
   onDelete = (id) => {
     const token = localStorage.getItem("token"); // Retrieve the token from local storage.
-    axios.delete(`http://localhost:8000/program/delete/${id}`,
+    axios.delete(`https://localhost:8000/program/delete/${id}`,
     {
       headers: {
         auth: `${token}`, // Include the token in the Authorization header.
@@ -65,7 +65,7 @@ export default class n_programs extends Component {
   handleSearchArea = (e) => {
     const searchKey = e.currentTarget.value;
 
-    axios.get("http://localhost:8000/programs").then((res) => {
+    axios.get("https://localhost:8000/programs").then((res) => {
       if (res.data.success) {
         this.filterData(res.data.existingPrograms, searchKey);
       }

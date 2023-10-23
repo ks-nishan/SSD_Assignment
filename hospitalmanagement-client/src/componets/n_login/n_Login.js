@@ -43,7 +43,7 @@ export default class n_Login extends Component {
       email: email,
       password: password,
     };
-    axios.post("http://localhost:8000/login", data).then((res) => {
+    axios.post("https://localhost:8000/login", data).then((res) => {
       if (res.status === 200) {
         const token = res.data.token;
         const decodedToken = jwt_decode(token);

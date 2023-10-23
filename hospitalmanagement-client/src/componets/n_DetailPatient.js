@@ -14,7 +14,7 @@ export default class n_CreatePatient extends Component {
     console.log("nish");
     const id = this.props.match.params.id;
 
-    axios.get(`http://localhost:8000/user/${id}`).then((res) => {
+    axios.get(`https://localhost:8000/user/${id}`).then((res) => {
       console.log("Fail");
       if (res.data.success) {
         this.setState({

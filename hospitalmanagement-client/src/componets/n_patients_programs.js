@@ -26,12 +26,7 @@ export default class n_programs extends Component {
   }
 
   retrivePrograms() {
-    const token = localStorage.getItem("token"); // Retrieve the token from local storage.
-    axios.get("http://localhost:8000/programs", {
-      headers: {
-        auth: `${token}`, // Include the token in the Authorization header.
-      },
-    }).then((res) => {
+    axios.get("https://localhost:8000/programs").then((res) => {
       if (res.data.success) {
         this.setState({
           programs: res.data.existingPrograms,
@@ -42,8 +37,9 @@ export default class n_programs extends Component {
     });
   }
 
+
   onDelete = (id) => {
-    axios.delete(`http://localhost:8000/program/delete/${id}`).then((res) => {
+    axios.delete(`https://localhost:8000/program/delete/${id}`).then((res) => {
       alert("Deleted Successfully");
       this.retrivePrograms();
     });

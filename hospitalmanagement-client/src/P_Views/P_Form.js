@@ -42,7 +42,7 @@ const P_Form = () => {
       return urlPattern.test(url);
     }
 
-    const res = await fetch("http://localhost:8000/form", {
+    const res = await fetch("https://localhost:8000/form", {
       
       method: "POST",
       headers: {

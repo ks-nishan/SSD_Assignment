@@ -25,7 +25,7 @@ class Map extends Component {
   handleSubmit = () => {
     if (this.state.name !== "" && this.state.id !== "") {
       axios
-        .post("http://localhost:8001/delivary/add", this.state)
+        .post("https://localhost:8001/delivary/add", this.state)
         .then((res) => {
           console.log("successfully posted");
           this.setState({

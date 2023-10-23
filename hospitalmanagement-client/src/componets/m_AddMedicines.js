@@ -26,7 +26,7 @@ class AddMedicines extends Component {
  
   handleSubmit = () => {
     if (this.state.name !== "" && this.state.id !== "") {
-      axios.post("http://localhost:8001/medicine/med", this.state).then((res) => {
+      axios.post("https://localhost:8001/medicine/med", this.state).then((res) => {
         console.log("successfully posted");
         this.setState({
           name: '',

@@ -1,5 +1,5 @@
 require('dotenv').config();
-
+const rateLimit = require('express-rate-limit');
 const express = require("express");
 
 const mongoose = require("mongoose");
@@ -7,6 +7,17 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
 const app = express();
+
+// Apply rate limiter middleware
+const limiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 15, // Maximum 3 requests per minute from the same IP
+  message: 'Too many requests from this IP, please try again later.',
+});
+
+// Apply rate limiter to all routes or specific routes as needed
+app.use(limiter);
+console.log(limiter.message);
 
 const cors = require("cors");
 

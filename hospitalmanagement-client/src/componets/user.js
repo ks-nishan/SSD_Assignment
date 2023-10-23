@@ -8,7 +8,7 @@ import userManagement from "../assets/userManagement.png";
 import labManagement from "../assets/labManagement.png";
 import programManagement from "../assets/programManagement.png";
 // import "./n_design.css";
-export default class n_home extends Component {
+export default class user extends Component {
   state = {
     email: "",
     password: "",
@@ -68,13 +68,13 @@ export default class n_home extends Component {
             marginTop: "25px",
           }}
         >
-          <h2> Admin Dashboad</h2>
+          <h2> Welcome To Zone Health Care</h2>
         </div>
         <Container className="mt-5">
           <Row>
             <Col lg={6} md={12} sm={12}>
               <img
-                class="d-block w-100"
+                class="d-block w-100 border-emerald-700"
                 src={logo}
                 alt="First slide"
                 style={{
@@ -102,7 +102,7 @@ export default class n_home extends Component {
                       >
                         <a
                           className="text-decoration-none text-dark "
-                          href="/programs"
+                          href="/patientsProgram"
                         >
                           <img
                             class="d-block w-100"
@@ -113,7 +113,7 @@ export default class n_home extends Component {
                               width: "150px",
                             }}
                           ></img>
-                          Manage Patients
+                         View Programs
                         </a>
                         <i className="bi bi-box-arrow-in-right"></i>
                       </button>
@@ -134,7 +134,7 @@ export default class n_home extends Component {
                       >
                         <a
                           className="text-decoration-none text-dark "
-                          href="/programs"
+                          href="/cruds/tab"
                         >
                           <img
                             class="d-block w-100"
@@ -145,7 +145,7 @@ export default class n_home extends Component {
                               width: "150px",
                             }}
                           ></img>
-                          Manage Programs
+                         View Appointments
                         </a>
                         <i className="bi bi-box-arrow-in-right"></i>
                       </button>
@@ -187,7 +187,7 @@ export default class n_home extends Component {
                               width: "150px",
                             }}
                           ></img>
-                          Labtest Management
+                          View Lab Appointments
                         </a>
                         <i className="bi bi-box-arrow-in-right"></i>
                       </button>
@@ -218,7 +218,7 @@ export default class n_home extends Component {
                               width: "150px",
                             }}
                           ></img>
-                          Manage Programs
+                        Pharmacy
                         </a>
                         <i className="bi bi-box-arrow-in-right"></i>
                       </button>

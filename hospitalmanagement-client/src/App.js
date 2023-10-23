@@ -40,6 +40,7 @@ import P_Form from "./P_Views/P_Form";
 import P_UserEdit from "./P_Views/P_UserEdit";
 import P_Details from "./P_Views/P_Details";
 import P_AssignDate from "./P_Views/P_AssignDate";
+import User from "./componets/user"
 import ProtectedRoute from "./ProtectedRoute";
 function App() {
   const [authenticated, setAuthenticated] = useState(false);

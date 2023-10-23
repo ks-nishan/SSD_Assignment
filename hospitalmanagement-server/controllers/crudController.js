@@ -16,7 +16,7 @@ const crud_create_post = (req, res) => {
 			res.send(crud);
 		})
 		.catch(function (err) {
-			res.status(422).send("Crud add failed");
+			res.status(422).send("Reservation  add failed");
 		});
 };
 

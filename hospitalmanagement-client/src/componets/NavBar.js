@@ -123,3 +123,4 @@ function NavBar({ authenticated }) {
 }
 
 export default NavBar;
+//updated

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { post } from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -12,9 +12,25 @@ function CrudAdd(props) {
     location: " ",
     link: " ",
     description: "",
+    csrfToken: "", // Add a field for the CSRF token
   };
   const [crud, setCrud] = useState(initialState);
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    // Fetch the CSRF token from the server when the component mounts
+    async function fetchCSRFToken() {
+      try {
+        const response = await fetch("/api/csrf-token");
+        const data = await response.json();
+        setCrud({ ...crud, csrfToken: data.csrfToken });
+      } catch (error) {
+        console.error("Error fetching CSRF token", error);
+      }
+    }
+
+    fetchCSRFToken();
+  }, []);
   function handleChange(event) {
     // Sanitize user input using DOMPurify
     const sanitizedValue = DOMPurify.sanitize(event.target.value);
@@ -22,10 +38,12 @@ function CrudAdd(props) {
   }
   const sanitizedDescription = DOMPurify.sanitize(crud.description);
 
-  const navigate = useNavigate();
-
   function handleSubmit(event) {
     event.preventDefault();
+
+    // Include the CSRF token in the request data
+    const dataWithCSRF = { ...crud, _csrf: crud.csrfToken };
+
     //if (!crud.companyName || !crud.email) return;
     async function postCrud() {
       try {

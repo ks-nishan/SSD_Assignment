@@ -17,7 +17,7 @@
     "bootstrap": "^5.2.0",
     "cross-env": "^7.0.3",
     "google-oauth2": "^0.1.0",
-    "jspdf": "^2.5.1",
+    "jspdf": "^2.5.2",
     "jspdf-autotable": "^3.5.25",
     "jwt-decode": "^3.1.2",
     "material-table": "^2.0.3",
